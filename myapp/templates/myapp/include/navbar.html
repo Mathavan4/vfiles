@@ -1,0 +1,44 @@
+{% load static %}
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{% static 'images/logo.png' %}" alt="Vetri Files Logo">
+    </div>
+
+    <div class="nav-links" id="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'merge_pdfs' %}">Merge PDF</a>
+      <a href="{% url 'compress_pdf' %}">Compress PDF</a>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" id="tools-btn">All PDF Tools ▾</button>
+        <div class="dropdown-content" id="tools-dropdown">
+          <a href="{% url 'merge_pdfs' %}">Merge PDF</a>
+          <a href="{% url 'split_pdf' %}">Split PDF</a>
+          <a href="{% url 'compress_pdf' %}">Compress PDF</a>
+          <a href="{% url 'pdf_to_word' %}">PDT to WORD</a>
+          <a href="{% url 'pdf_to_ppt_page' %}">PDF to PowerPoint</a>
+          <a href="{% url 'pdf_to_excel' %}">PDF to Excel </a>
+          <a href="{% url 'excel_to_pdf' %}">Excel to PDF</a>
+          <a href="{% url 'ppt_to_pdf' %}">PowerPoint to PDF</a>
+          <a href="{% url 'sign_pdf' %}">Sign PDF</a>
+          <a href="{% url 'word_to_pdf' %}">Word to PDF</a>
+          <a href="{% url 'image_to_pdf' %}">Image to PDF</a>
+          <a href="{% url 'pdf_to_image' %}">PDF to Image</a>
+          <a href="{% url 'image_compress' %}">Image Compress</a>
+          <a href="{% url 'pdf_watermark' %}">Watermark</a>
+          <a href="{% url 'pdf_protect' %}">Protect PDF</a>
+          <a href="{% url 'pdf_unlock_page' %}">Unlock PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-buttons">
+      <a href="{% url 'login_page' %}" class="login-btn">Log in</a>
+      <a href="{% url 'signup_page' %}" class="signup-btn">Sign up</a>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
+  </nav>
+  <div class="bottom-line"></div>
+
+  <script src="{% static 'js/navbar.js' %}"></script>

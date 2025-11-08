@@ -1,0 +1,217 @@
+.compress-page {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.compress-page .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #1A0F47;
+  padding-bottom: 10px;
+}
+
+.compress-page .title-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.compress-page .header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.compress-page .box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  width: 95%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.compress-page .custom-file-upload {
+  display: inline-block;
+  background-color: #1A0F47;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.compress-page .custom-file-upload:hover {
+  background-color: #332a70;
+}
+
+.compress-page .file-input {
+  display: none;
+}
+
+.compress-page .file-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+.compress-page .file-name {
+  font-size: 16px;
+  color: #4F38D0;
+  word-break: break-all;
+}
+
+.compress-page .remove-btn {
+  background: #1A0F47;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.compress-page .remove-btn:hover {
+  background: #332a70;
+}
+
+.compress-page .next-btn {
+  background: #1A0F47;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.compress-page .next-btn:hover {
+  background: #332a70;
+}
+
+.compress-page .options-box {
+  display: none;
+}
+
+/* Dropdown */
+.compress-page .dropdown {
+  position: relative;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 300px;
+  text-align: left;
+}
+
+.compress-page .dropdown-selected {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compress-page .dropdown-options {
+  display: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.compress-page .dropdown-options.show {
+  display: block;
+}
+
+.compress-page .option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.compress-page .option:hover {
+  background: #f1f1f1;
+}
+
+.compress-page .compress-btn {
+  background: #1A0F47;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.compress-page .compress-btn:hover {
+  background: #332a70;
+}
+
+/* Overlay animation */
+.compress-page .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 15, 71, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.compress-page .loader-message .spinner {
+  border: 5px solid #fff;
+  border-top: 5px solid #4F38D0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+  .compress-page .box {
+    width: 100%;
+    padding: 15px;
+  }
+  .compress-page .header h2 {
+    font-size: 22px;
+  }
+  .compress-page .title-icon {
+    width: 38px;
+    height: 38px;
+  }
+}

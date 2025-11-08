@@ -1,0 +1,126 @@
+/* Main box */
+body{
+    background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+    font-family: "Poppins", sans-serif;
+
+
+}
+.box {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header - image + title same line */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Header icon */
+.title-icon {
+  width: 45px;
+  height: 45px;
+}
+
+/* Header title */
+.header h2 {
+  font-size: 30px !important;
+  font-weight: bolder;
+  color: #2d3436;
+  margin: 0;
+}
+
+/* ✅ Line below header (separate line) */
+.header-line {
+  width: 80%; 
+  height: 3px;
+  background: #3498db;
+  margin: 10px auto 20px auto;
+  border-radius: 3px;
+}
+
+/* Success message */
+.box h2 {
+  font-size: 20px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* Download button */
+.btn {
+  background: #1A0F47;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  color: #333;
+}
+
+/* Back to home link */
+.home-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2d3436;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #1A0F47;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .header h2 {
+    font-size: 22px;
+  }
+
+  .box h2 {
+    font-size: 18px;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .box {
+    padding: 15px;
+  }
+}

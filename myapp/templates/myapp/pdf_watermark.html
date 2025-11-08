@@ -1,0 +1,57 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_watermark.css' %}">
+{% endblock %}
+
+<div class="pdfwm-container">
+  <div class="pdfwm-main-box">
+    <div class="pdfwm-header">
+      <img src="{% static 'images/watermark.png' %}" alt="icon" class="pdfwm-title-icon">
+      <h2>Add Watermark to PDF</h2>
+    </div>
+
+    <div class="pdfwm-upload-section">
+      <h3>Select PDF File</h3>
+      <div class="pdfwm-file-input">
+        <label for="pdfInput" class="pdfwm-file-label">Choose File</label>
+        <input type="file" id="pdfInput" accept=".pdf">
+        <span id="fileName">No file chosen</span>
+      </div>
+    </div>
+
+    <div class="pdfwm-input-section">
+      <label>Watermark Text:</label>
+      <input type="text" id="watermarkText" placeholder="Enter watermark text">
+
+      <label>Position:</label>
+      <select id="positionSelect">
+        <option value="center">Center</option>
+        <option value="top left">Top Left</option>
+        <option value="bottom right">Bottom Right</option>
+        <option value="top diagonal">Top Diagonal</option>
+        <option value="bottom diagonal">Bottom Diagonal</option>
+      </select>
+
+      <label>Opacity (0.1 to 1.0):</label>
+      <input type="number" id="opacityInput" step="0.1" min="0.1" max="1.0" value="0.3">
+    </div>
+
+    <button id="addBtn">Add Watermark</button>
+    <p id="loader" style="display:none;">Processing... Please wait...</p>
+  </div>
+
+  <!-- ✅ Result Preview -->
+  <div class="pdfwm-result-box" style="display:none;">
+    <h3>Preview Watermarked PDF:</h3>
+    <iframe id="pdfPreview"></iframe>
+    <div class="pdfwm-action-buttons">
+      <button id="downloadBtn">Download PDF</button>
+      <a href="{% url 'home' %}" class="pdfwm-home-btn">Go Home</a>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_watermark.js' %}"></script>
+{% endblock %}

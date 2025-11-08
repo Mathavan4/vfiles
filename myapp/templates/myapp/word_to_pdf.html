@@ -1,0 +1,91 @@
+{% extends 'myapp/layouts/base.html' %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/word_to_pdf.css' %}">
+{% endblock %}
+
+<div class="convert-box">
+  <img src="{% static 'images/word_pdf.png' %}" class="title-icon">
+  <h2>Word → PDF Converter</h2>
+  <div class="underline"></div>
+
+  <div id="uploadSection">
+    <label for="wordFile" class="custom-file-upload">Choose Word File</label>
+    <input type="file" id="wordFile" name="word" accept=".doc,.docx" hidden>
+  </div>
+
+  <div id="previewSection" class="hidden">
+    <div class="preview-container">
+      <img src="{% static 'images/word_icon.png' %}" class="file-icon">
+      <span id="fileName"></span>
+      <button id="removeBtn" class="remove-btn">✖</button>
+    </div>
+    <button id="convertBtn" class="convert-btn">Convert to PDF</button>
+  </div>
+</div>
+
+<!-- Spinner Overlay -->
+<div id="spinnerOverlay" class="spinner-overlay hidden">
+  <div class="spinner"></div>
+  <p>Converting your file... Please wait</p>
+</div>
+
+<script>
+const fileInput = document.getElementById("wordFile");
+const previewSection = document.getElementById("previewSection");
+const fileName = document.getElementById("fileName");
+const removeBtn = document.getElementById("removeBtn");
+const convertBtn = document.getElementById("convertBtn");
+const spinnerOverlay = document.getElementById("spinnerOverlay");
+
+let selectedFile = null;
+
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length) {
+    selectedFile = fileInput.files[0];
+    fileName.textContent = selectedFile.name;
+    previewSection.classList.remove("hidden");
+  }
+});
+
+removeBtn.addEventListener("click", () => {
+  selectedFile = null;
+  fileInput.value = ""; 
+  previewSection.classList.add("hidden");
+});
+
+convertBtn.addEventListener("click", async () => {
+  if (!selectedFile) {
+    alert("No file selected.");
+    return;
+  }
+
+  // Show spinner
+  spinnerOverlay.classList.remove("hidden");
+
+  const formData = new FormData();
+  formData.append("word", selectedFile);
+  try {
+    const response = await fetch("{% url 'word_to_pdf' %}", {
+      method: "POST",
+      body: formData,
+      headers: {"X-CSRFToken": "{{ csrf_token }}"}
+    });
+    const data = await response.json();
+
+    // Keep spinner visible till conversion done
+    setTimeout(() => {
+      spinnerOverlay.classList.add("hidden");
+      if (data.redirect_url) window.location.href = data.redirect_url;
+      else alert(data.error || "Error converting file");
+    }, 1200);
+
+  } catch (err) {
+    spinnerOverlay.classList.add("hidden");
+    alert("Something went wrong!");
+  }
+});
+</script>
+
+{% endblock %}

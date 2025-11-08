@@ -1,0 +1,65 @@
+{% extends 'myapp/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/merge_pdfs.css' %}">
+{% endblock %}
+
+<div class="merge-box">
+  <div class="header">
+    <img src="{% static 'images/merge.png' %}" alt="icon" class="title-icon">
+    <h2>Upload and Merge PDFs</h2>
+  </div>
+  <div class="underline"></div>
+
+  {% if error %}
+  <p class="error">{{ error }}</p>
+  {% endif %}
+
+  <!-- Upload form -->
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="pdf_files" accept="application/pdf" multiple required>
+    <button type="submit" name="upload" class="upload-btn">Upload</button>
+  </form>
+
+  <div class="file-list">
+    {% if uploaded %}
+      {% for pdf in uploaded %}
+      <div class="file-item">
+        <embed src="data:application/pdf;base64,{{ pdf.data }}" type="application/pdf" class="pdf-preview">
+        <div class="file-info">
+          <span class="pdf-name">{{ pdf.name }}</span>
+          <form method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" name="remove" value="{{ forloop.counter0 }}" class="remove-btn">✖</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No PDFs uploaded yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Merge button -->
+  {% if uploaded|length > 1 %}
+  <form method="post" id="mergeForm">
+    {% csrf_token %}
+    <button type="submit" name="merge" class="merge-btn">Merge PDFs</button>
+  </form>
+  {% endif %}
+</div>
+
+<!-- 🔄 Spinner Overlay -->
+<div id="loadingOverlay">
+  <div class="spinner"></div>
+  <p>Merging PDFs... Please wait</p>
+</div>
+
+<!-- JS: Show spinner only when Merge button is pressed -->
+<script src="{% static 'js/merge.js' %}"></script>
+
+
+{% endblock %}

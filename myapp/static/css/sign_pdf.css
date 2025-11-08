@@ -1,0 +1,238 @@
+/* Wrap everything inside .sign-page to avoid affecting navbar/footer */
+.sign-page {
+  padding: 25px 0;
+  background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========== HEADER ========== */
+.sign-page .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.sign-page .title-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.sign-page .header h2 {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.sign-page .underline {
+  width: 220px;
+  height: 3px;
+  background: white;
+  margin: 0 auto 15px;
+  border-radius: 3px;
+}
+
+/* ========== MAIN BOX ========== */
+.sign-page .main-box {
+  background: #fff; 
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sign-page input,
+.sign-page select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* ✅ File Input Custom Style with border */
+.sign-page .file-input-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sign-page .file-label {
+  background: #1A0F47;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.sign-page .file-label:hover {
+  background: #2c1e6e;
+}
+
+.sign-page #pdfFile {
+  display: none;
+}
+
+.sign-page #fileName {
+  font-size: 14px;
+  color: #555;
+  word-break: break-all;
+}
+
+/* ✅ Signature Type (◉ Text     ◉ Image) */
+.sign-page .sig-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin: 10px 0 15px;
+}
+
+.sign-page .sig-type label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000;
+}
+
+.sign-page .sig-type input[type="radio"] {
+  transform: scale(1.1);
+  accent-color: #1A0F47;
+}
+
+#previewTitle{
+  color: white;
+  text-align: center;
+  margin: 10px;
+}
+/* ========== PREVIEW BOX ========== */
+.sign-page #previewBox {
+  border: 2px solid #ccc;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 60%;
+  margin: 10px auto;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.sign-page #pdfPreview {
+  position: relative;
+  display: inline-block;
+}
+
+/* ✅ Make PDF canvas slightly smaller for responsiveness */
+.sign-page canvas {
+  display: block;
+  margin: 10px auto;
+  width: 90%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ========== BOTTOM BOX ========== */
+.sign-page #bottomBox {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sign-page button {
+  background: #1A0F47;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+.sign-page button:hover {
+  background: #2c1e6e;
+}
+
+.sign-page .hidden {
+  display: none;
+}
+
+/* ✅ RESPONSIVE ADJUSTMENTS (mobile/tablet safe) */
+@media (max-width: 768px) {
+  .sign-page .main-box {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .sign-page .header h2 {
+    font-size: 1.4rem;
+  }
+
+  .sign-page #previewBox {
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  .sign-page canvas {
+    width: 100%;
+  }
+
+  .sign-page button {
+    width: 100%;
+  }
+
+  .sign-page .sig-type {
+    gap: 40px;
+  }
+
+  /* ✅ File input in one line on small screens */
+  .sign-page .file-input-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .sign-page .file-label {
+    flex-shrink: 0;
+  }
+
+  .sign-page #fileName {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 13px;
+  }
+}
+
+/* ✅ Extra small (phones under 480px) */
+@media (max-width: 480px) {
+  .sign-page .file-input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .sign-page .file-label,
+  .sign-page #fileName {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sign-page .sig-type {
+    gap: 25px;
+  }
+}

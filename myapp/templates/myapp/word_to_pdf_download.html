@@ -1,0 +1,155 @@
+{% extends 'myapp/layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  body{
+        background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+
+  }
+.convert-box {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 30px;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Image + heading in one line */
+.header-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+}
+
+/* Main heading */
+.header-inline h2 {
+  font-size: 22px;
+  color: #1A0F47;
+  margin: 0;
+}
+
+/* Underline below heading */
+.underline {
+  width: 120px;
+  height: 3px;
+  background-color: #4E37CF;
+  border-radius: 5px;
+  margin: 10px auto 20px;
+}
+
+/* Converted success text */
+.convert-box h3 {
+  font-size: 20px;
+  color: #1A0F47;
+  margin-bottom: 10px;
+}
+
+/* Converted file name */
+.convert-box p {
+  font-size: 16px;
+  color: #4E37CF;
+  font-weight: 500;
+  margin-bottom: 25px;
+  word-break: break-all;
+}
+
+/* Download button */
+.convert-btn {
+  background: #1A0F47;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.convert-btn:hover {
+  background: #4E37CF;
+}
+
+/* Home button */
+.remove-btn {
+  background: #4E37CF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.remove-btn:hover {
+  background: #1A0F47;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .convert-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .header-inline {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .success-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .header-inline h2 {
+    font-size: 18px;
+  }
+
+  .convert-box h3 {
+    font-size: 17px;
+  }
+
+  .convert-btn,
+  .remove-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .underline {
+    width: 80px;
+  }
+}
+</style>
+
+<div class="convert-box">
+  <!-- ✅ Image + Heading same line -->
+  <div class="header-inline">
+    <img src="{% static 'images/word_pdf.png' %}" alt="Success" class="success-icon">
+    <h2>Word → PDF Converter</h2>
+  </div>
+
+  <div class="underline"></div>
+
+  <!-- Success message -->
+  <h3>Word to PDF Converted Successfully!</h3>
+
+  <!-- Converted file name -->
+  <p>{{ file_name }}</p>
+
+  <!-- Buttons -->
+  <a href="{% url 'download_converted_pdf' %}" class="convert-btn">⬇ Download PDF</a>
+  <br><br>
+  <a href="{% url 'home' %}" class="remove-btn">🏠 Back to Home</a>
+</div>
+
+{% endblock %}

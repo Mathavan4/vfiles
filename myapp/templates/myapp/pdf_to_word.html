@@ -1,0 +1,41 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_to_word.css' %}">
+{% endblock %}
+
+
+<div class="converter-container">
+
+  <!-- 🔹 Header (Image + Text + Underline) -->
+  <div class="header-line">
+    <img src="{% static 'images/pdf_word.png' %}" alt="icon" class="heading-icon">
+    <h2 class="heading">PDF to Word Converter</h2>
+  </div>
+  <div class="underline"></div>
+
+  <!-- 🔹 Upload Box -->
+  <div class="box" id="uploadBox">
+    <label for="pdfInput" class="file-label">Choose PDF File</label>
+    <input type="file" id="pdfInput" accept="application/pdf" class="file-input" hidden><br>
+
+    <div class="preview-section" id="previewSection" style="display:none;">
+      <div class="file-info">
+        <span id="fileName" class="file-name"></span>
+        <button id="removeFile" class="remove-btn">×</button>
+      </div>
+      <button class="convert-btn" id="convertBtn">Convert to Word</button>
+    </div>
+
+    <!-- Spinner Loader -->
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p>Converting... Please wait...</p>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_to_word.js' %}"></script>
+
+{% endblock %}

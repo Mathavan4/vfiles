@@ -1,0 +1,77 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sign_pdf.css' %}">
+{% endblock %}
+
+<div class="sign-page">
+  <!-- Header Section -->
+  <div class="header">
+    <img src="{% static 'images/sign_pdf.png' %}" alt="icon" class="title-icon">
+    <h2>PDF Signature Tool</h2>
+  </div>
+  <div class="underline"></div>
+
+  <!-- Upload Section -->
+  <div class="main-box">
+    <h3>Select PDF to Sign:</h3>
+    <div class="file-input-wrapper">
+      <label for="pdfFile" class="file-label">Choose PDF File</label>
+      <input type="file" id="pdfFile" accept=".pdf">
+      <span id="fileName">No file chosen</span>
+    </div>
+
+    <!-- Signature Type -->
+    <h4>Signature Type:</h4>
+    <div class="sig-type">
+      <label><input type="radio" name="sigType" value="text" checked> Text</label>
+      <label><input type="radio" name="sigType" value="image"> Image</label>
+    </div>
+
+    <!-- Text Options -->
+    <div id="textOptions">
+      <label>Text Signature:</label>
+      <input type="text" id="sigText" placeholder="Enter your signature text">
+
+      <label>Font Size:</label>
+      <input type="number" id="fontSize" value="18" min="8" max="60">
+
+      <label>Font Family:</label>
+      <select id="fontFamily">
+        <option value="Times-Roman">Times New Roman</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="Courier">Courier</option>
+        <option value="ZapfDingbats">Zapf Dingbats</option>
+        <option value="Symbol">Symbol</option>
+      </select>
+    </div>
+
+    <!-- Image Options -->
+    <div id="imageOptions" class="hidden">
+      <label>Upload Signature Image:</label>
+      <input type="file" id="sigImage" accept="image/*">
+    </div>
+  </div>
+
+  <!-- Preview Section -->
+  <h3 id="previewTitle" class="hidden">Preview Your PDF (Drag to place your signature):</h3>
+  <div id="previewBox">
+    <div id="pdfPreview"></div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div id="bottomBox">
+    <button id="signBtn">Sign PDF</button>
+    <p id="loadingMsg" class="hidden">⏳ Signing your PDF...</p>
+  </div>
+</div> 
+
+<!-- ✅ Load PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+</script>
+
+<script src="{% static 'js/sign_pdf.js' %}"></script>
+{% endblock %}

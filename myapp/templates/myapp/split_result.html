@@ -1,0 +1,24 @@
+{% extends 'myapp/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/split_result.css' %}">
+{% endblock %}
+
+
+
+<div class="box">
+  <div class="header">
+    <img src="{% static 'images/split.png' %}" alt="icon" class="title-icon">
+    <h2>Split PDF Tool</h2>
+  </div>
+  <h2>Your PDF has been split successfully!</h2>
+  <form method="post" action="{% url 'download_split' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn">⬇️ Download Split Files</button>
+  </form>
+  <a href="{% url 'home' %}" class="home-link">← Back to Home</a>
+</div>
+{% endblock %} 

@@ -1,0 +1,185 @@
+/* ✅ Strictly scoped styles so navbar (from base.html) is not affected */
+
+.pdf-protect-container {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  isolation: isolate; /* Prevent leaks to navbar */
+}
+
+.pdf-protect-container * {
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.pdf-protect-container .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.pdf-protect-container .header-line {
+  width: 200px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  margin: 10px auto 20px;
+}
+
+.pdf-protect-container .title-icon {
+  width: 40px;
+  height: 40px;
+}
+
+h3{
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+/* Upload + Result Box */
+.pdf-protect-container .upload-box,
+.pdf-protect-container .result-box {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto 30px;
+
+}
+
+/* ✅ Changed file input color only */
+.pdf-protect-container input[type="file"] {
+  padding: 10px;
+  border: 2px dashed #1A0F47;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #1A0F47;
+  width: 95%;
+  color: white;
+  font-weight: 500;
+}
+
+/* File list styling */
+.pdf-protect-container .file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 8px;
+  margin: 8px 0;
+  padding: 8px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-protect-container .file-item span {
+  color: #4E37CF;
+  font-weight: 600;
+}
+
+.pdf-protect-container .remove-btn {
+  background: #1A0F47;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Password Box */
+.pdf-protect-container .password-box {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.pdf-protect-container .password-box input {
+  width: 100%;
+  padding: 10px 35px 10px 10px;
+  border: 2px solid #1A0F47;
+  border-radius: 8px;
+  color: #1A0F47;
+}
+
+.pdf-protect-container .password-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1A0F47;
+  cursor: pointer;
+}
+
+/* Buttons */
+.pdf-protect-container button {
+  background: #1A0F47;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.pdf-protect-container button:hover {
+  background: #2c1b80;
+}
+
+/* Loader Overlay */
+.pdf-protect-container .loader-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-protect-container .loader-spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #1A0F47;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pdf-protect-container #fileName {
+  color: #4E37CF;
+  font-weight: bold;
+}
+
+/* ✅ Mobile/Tablet Friendly (navbar-safe) */
+@media (max-width: 768px) {
+  .pdf-protect-container {
+    padding: 20px;
+  }
+  .pdf-protect-container .header h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+  .pdf-protect-container .upload-box,
+  .pdf-protect-container .result-box {
+    width: 90%;
+  }
+}

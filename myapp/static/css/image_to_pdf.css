@@ -1,0 +1,153 @@
+body{
+      background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-icon {
+  width: 40px;
+  height: 40px;
+}
+h2{
+  color: white;
+}
+
+/* 🔹 Underline below image and heading */
+.underline {
+  width: 30%;
+  margin: 10px auto 20px auto;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+.upload-box,
+.result-box {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"] {
+  padding: 10px;
+  border: 2px dashed #1A0F47;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #1A0F47;
+  color: white;
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+/* Image preview grid */
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.img-box {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* 🔹 Remove Button Style */
+.remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #1A0F47;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.convert-btn,
+.download-btn,
+.home-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #1d3557;
+  color: white;
+  transition: 0.3s;
+}
+
+.convert-btn:hover,
+.download-btn:hover,
+.home-btn:hover {
+  background-color: #457b9d;
+}
+
+/* 🔹 Spinner Fullscreen Overlay */
+.spinner-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.spinner {
+  border: 6px solid #ddd;
+  border-top: 6px solid #1A0F47;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-overlay p {
+  color: #1A0F47;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Result Box */
+.result-box {
+  display: none;
+}
+
+#resultFile {
+  color: #4C37CD;
+  font-weight: bold;
+}

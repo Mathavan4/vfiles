@@ -1,0 +1,59 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/compress_pdf.css' %}">
+{% endblock %}
+
+<div class="compress-page">
+
+  <div class="header">
+    <img src="{% static 'images/split.png' %}" alt="icon" class="title-icon">
+    <h2>Compress PDF</h2>
+  </div>
+
+  <div class="box" id="uploadBox">
+    <label class="custom-file-upload">
+      <input type="file" id="pdfInput" accept="application/pdf" class="file-input">
+      Choose File
+    </label>
+
+    <div class="preview-section" id="previewSection" style="display:none;">
+      <div class="file-info">
+        <span id="fileName" class="file-name"></span>
+        <button id="removeFile" class="remove-btn">×</button>
+      </div>
+      <button class="next-btn" id="nextBtn">Next →</button>
+    </div>
+  </div>
+
+  <div class="box options-box" id="optionsBox">
+    <h4>Select Compression Level</h4>
+
+    <div class="dropdown" id="dropdownBox">
+      <div class="dropdown-selected" id="dropdownSelected">
+        Select Quality: <span id="selectedQuality">Medium Quality</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="dropdown-options" id="dropdownOptions">
+        <div class="option" data-value="low">Low Quality</div>
+        <div class="option" data-value="medium">Medium Quality</div>
+        <div class="option" data-value="high">High Quality</div>
+      </div>
+    </div>
+
+    <button class="compress-btn" id="compressBtn">Compress PDF</button>
+  </div>
+
+  <!-- Overlay animation -->
+  <div class="overlay" id="overlay">
+    <div class="loader-message">
+      <div class="spinner"></div>
+      <p>Compressing... Please wait...</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="{% static 'js/compress.js' %}"></script>
+{% endblock %}

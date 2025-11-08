@@ -1,0 +1,166 @@
+
+
+.signup-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-color: #fff;
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 30px 25px;
+    background: #ffffff;
+    /* White box background */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.signup-container h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.signup-container .heart {
+    color: #e63946;
+}
+
+.signup-container h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Input fields */
+.signup-container .input-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.signup-container .input-group input {
+    width: 100%;
+    padding: 12px 42px 12px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* Eye icon */
+.signup-container .password-group i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    cursor: pointer;
+}
+
+/* Button */
+.signup-container .signup-btn {
+    width: 100%;
+    background-color: #1A0F47;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-container .signup-btn:hover {
+    background-color: #0e0733;
+}
+
+/* Text links */
+.signup-container .login-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.signup-container .login-text a {
+    color: #1A0F47;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-container .login-text a:hover {
+    text-decoration: underline;
+}
+
+/* Messages */
+.messages p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.messages .error {
+    background-color: #ffe6e6;
+    color: #d8000c;
+}
+
+.messages .success {
+    background-color: #e6ffec;
+    color: #005f1f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signup-container {
+        max-width: 90%;
+        padding: 20px 15px;
+    }
+
+    .signup-container h1 {
+        font-size: 24px;
+    }
+
+    .signup-container h2 {
+        font-size: 16px;
+    }
+
+    .signup-container .signup-btn {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-section {
+        padding: 15px;
+    }
+
+    .signup-container {
+        max-width: 100%;
+        padding: 15px 10px;
+    }
+
+    .signup-container h1 {
+        font-size: 22px;
+    }
+
+    .signup-container h2 {
+        font-size: 15px;
+    }
+
+    .signup-container input {
+        font-size: 14px;
+        padding: 10px 38px 10px 10px;
+    }
+}

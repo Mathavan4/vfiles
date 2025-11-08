@@ -1,0 +1,53 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_to_excel.css' %}">
+{% endblock %}
+
+<!-- ✅ Scoped wrapper to isolate styles -->
+<div class="pdf-to-excel-page container">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-content">
+      <img src="{% static 'images/pdf_excel.png' %}" alt="icon" class="title-icon">
+      <h2>Convert PDF to Excel</h2>
+    </div>
+    <div class="underline"></div>
+  </div>
+
+  <!-- Upload Section -->
+  <div class="main-box" id="uploadSection">
+    <form id="uploadForm">
+      {% csrf_token %}
+      <div class="upload-area">
+        <input type="file" id="pdfFile" accept=".pdf">
+        <div class="file-preview" id="filePreview" style="display:none;">
+          <span id="fileNamePreview"></span>
+          <span id="removeFile" class="remove-file">✖</span>
+        </div>
+      </div>
+      <button type="button" id="convertBtn" disabled>Convert to Excel</button>
+    </form>
+  </div>
+
+  <!-- Download Section -->
+  <div id="downloadSection" class="hidden">
+    <div class="result-box">
+      <h3 id="fileName"></h3>
+      <div class="action-buttons">
+        <button id="downloadBtn">⬇ Download Excel</button>
+        <a href="/" class="home-btn">🏠 Go Home</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <p>Converting... Please wait</p>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_to_excel.js' %}"></script>
+{% endblock %}

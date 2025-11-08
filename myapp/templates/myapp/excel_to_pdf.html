@@ -1,0 +1,130 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/excel_to_pdf.css' %}">
+{% endblock %}
+
+<div class="converter-container">
+  <!-- Header -->
+  <div class="header">
+    <img src="{% static 'images/excel_pdf.png' %}" alt="icon" class="title-icon"> 
+    <h2>Excel → PDF Converter</h2>
+  </div>
+  <div class="underline"></div>
+
+  <p class="sub-heading">Convert your Excel file to PDF with same structure and alignment</p>
+
+  <!-- Upload Section -->
+  <div id="upload-section">
+    <form id="excelForm" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="upload-box">
+        <label for="excelFile" class="upload-btn">Choose Excel File</label>
+        <input type="file" id="excelFile" name="excel" accept=".xls,.xlsx" hidden>
+      </div>
+
+      <div id="preview" class="preview hidden">
+        <div class="file-details">
+          <span id="fileName"></span>
+          <button type="button" id="removeBtn" class="remove-btn">✖</button>
+        </div>
+      </div>
+
+      <button type="submit" class="convert-btn">Convert</button>
+    </form>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <p>Converting... Please wait</p>
+  </div>
+
+  <!-- Result -->
+  <div id="result-section" class="hidden">
+    <h3 id="convertedName"></h3>
+    <div class="actions">
+      <a id="downloadBtn" href="#" class="btn download-btn">⬇️ Download PDF</a>
+      <a href="{% url 'home' %}" class="btn home-btn">🏠 Home</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const excelFile = document.getElementById("excelFile");
+  const preview = document.getElementById("preview");
+  const fileName = document.getElementById("fileName");
+  const removeBtn = document.getElementById("removeBtn");
+  const form = document.getElementById("excelForm");
+  const loading = document.getElementById("loading");
+  const uploadSection = document.getElementById("upload-section");
+  const resultSection = document.getElementById("result-section");
+  const convertedName = document.getElementById("convertedName");
+  const downloadBtn = document.getElementById("downloadBtn");
+
+  excelFile.addEventListener("change", () => {
+    if (excelFile.files.length > 0) {
+      const f = excelFile.files[0];
+      fileName.textContent = f.name;
+      preview.classList.remove("hidden");
+    }
+  });
+
+  removeBtn.addEventListener("click", () => {
+    excelFile.value = "";
+    preview.classList.add("hidden");
+    fileName.textContent = "";
+  });
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    if (!excelFile.files.length) {
+      alert("Please choose an Excel file first.");
+      return;
+    }
+
+    // ✅ Show loader while waiting
+    loading.style.display = "flex";
+    const formData = new FormData(form);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    const start = Date.now();
+    try {
+      const res = await fetch("{% url 'excel_to_pdf' %}", {
+        method: "POST",
+        body: formData,
+        headers: { "X-CSRFToken": csrfToken },
+        credentials: "same-origin"
+      });
+
+      const data = await res.json();
+      const elapsed = Date.now() - start;
+      const minTime = 2000;
+      const delay = elapsed < minTime ? minTime - elapsed : 0;
+
+      // ✅ Hide spinner before showing result
+      setTimeout(() => {
+        loading.style.display = "none";  // Hide loader completely
+
+        if (res.ok && data.download_url) {
+          uploadSection.classList.add("hidden");
+          resultSection.classList.remove("hidden");
+          convertedName.textContent = data.pdf_name;
+          downloadBtn.href = data.download_url;
+        } else {
+          alert(data.error || "Conversion failed.");
+        }
+      }, delay);
+    } catch (err) {
+      loading.style.display = "none";
+      console.error(err);
+      alert("Server error. Check console.");
+    }
+  });
+});
+</script>
+
+{% endblock %}

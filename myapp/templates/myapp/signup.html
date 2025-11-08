@@ -1,0 +1,54 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+<div class="signup-section">
+  <div class="signup-container">
+    <h1><span class="heart"></span> VetriFiles</h1>
+    <h2>Create new account</h2>
+
+    <!-- Show messages -->
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form class="signup-form" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" name="name" id="name" placeholder="Name" required>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" id="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-group password-group">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <i class="fa-solid fa-eye" id="togglePassword"></i>
+      </div>
+
+      <div class="input-group password-group">
+        <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password" required>
+        <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
+      </div>
+
+      <button type="submit" class="signup-btn">Sign up</button>
+
+      <p class="login-text">
+        Already member? <a href="{% url 'login_page' %}">Log in</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+
+<script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_to_image.css' %}">
+{% endblock %}
+
+<!-- 👇 wrapper added to isolate styles -->
+<div class="pdf-page">
+  <div class="container">
+    <div class="header">
+      <img src="{% static 'images/pdf_img.webp' %}" alt="Icon" class="title-icon">
+      <h2>Convert PDF to Image</h2>
+    </div>
+    <div class="underline"></div>
+
+    <div class="upload-box" id="uploadBox">
+      <input type="file" id="pdfInput" accept="application/pdf" multiple>
+      <div id="fileList"></div>
+
+      <div class="format-select">
+        <h3>Choose Output Format</h3>
+        <label><input type="radio" name="format" value="png" checked> PNG</label>
+        <label><input type="radio" name="format" value="jpg"> JPG</label>
+      </div>
+
+      <button id="convertBtn" disabled>Convert to Image</button>
+      <div class="loader-overlay" id="loaderOverlay" style="display:none;">
+        <div class="loader"></div>
+        <p>Converting... Please wait...</p>
+      </div>
+    </div>
+
+    <div class="result-box" id="resultBox" style="display:none;">
+      <h3>Conversion Complete!</h3>
+      <div id="imagePreview"></div>
+      <button id="downloadBtn">Download Images</button>
+      <button id="zipBtn">Download ZIP</button>
+      <button id="homeBtn">Go Home</button>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_to_image.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_unlock.css' %}">
+{% endblock %}
+
+<div class="pdf-unlock-wrapper">
+  <div class="pdf-unlock-container">
+    <div class="header">
+      <img src="{% static 'images/unlock_pdf.png' %}" alt="Unlock" class="title-icon">
+      <h2>Unlock PDF</h2>
+    </div>
+
+    <div class="upload-box" id="uploadBox">
+      <h3>Select Password-Protected PDF</h3>
+      <input type="file" id="pdfInput" accept="application/pdf">
+      <div id="fileInfo" class="file-item" style="display:none;">
+        <span id="fileName"></span>
+        <button id="removeFile" class="remove-btn">×</button>
+      </div>
+
+      <h3>Enter Password</h3>
+      <div class="password-box">
+        <input type="password" id="passwordInput" placeholder="Enter PDF password">
+        <i id="togglePassword" class="fa fa-eye"></i>
+      </div>
+
+      <button id="unlockBtn" disabled>Unlock PDF</button>
+    </div>
+
+    <div class="result-box" id="resultBox" style="display:none;">
+      <h3>Unlocked!</h3>
+      <p id="resultFilename" style="color:green; font-weight:600;"></p>
+      <button id="downloadBtn">Download Unlocked PDF</button>
+      <button id="homeBtn">Go Home</button>
+    </div>
+  </div>
+
+  <!-- Spinner overlay -->
+  <div class="loading-overlay" id="loader" style="display:none;">
+    <div class="spinner"></div>
+    <p>Unlocking... Please wait...</p>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_unlock.js' %}"></script>
+{% endblock %}

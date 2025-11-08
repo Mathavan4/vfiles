@@ -1,0 +1,49 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_to_ppt.css' %}">
+{% endblock %}
+
+<div class="container">
+    <div class="header">
+        <img src="{% static 'images/pdf_ppt.png' %}" alt="PPT Icon" class="title-icon">
+        <h2>Convert PDF to PowerPoint</h2>
+    </div>
+    <div class="underline"></div>
+
+    <div class="box" id="uploadBox">
+        <!-- Gradient Choose Button -->
+        <div class="file-upload-wrapper">
+            <label for="pdfInput" class="file-label">Choose File</label>
+            <span id="file-text">No file chosen</span> 
+            <input type="file" id="pdfInput" accept="application/pdf" hidden>
+        </div>
+
+        <!-- File info after upload -->
+        <div id="fileInfo" class="file-line" style="display:none;">
+            <span id="fileName"></span>
+            <button id="removeFile">×</button>
+        </div>
+
+        <button class="convert-btn" id="convertBtn" disabled>Convert to PowerPoint</button>
+
+        <!-- Spinner message -->
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <p>Converting... Please wait</p>
+        </div>
+
+    </div>
+
+    <!-- Result Box -->
+    <div class="box" id="resultBox">
+        <h3>Conversion Complete!</h3>
+        <p id="resultFile" class="converted-name"></p>
+        <button class="download-btn" id="downloadBtn">Download</button>
+        <button class="home-btn" id="homeBtn">Go Home</button>
+    </div>
+</div>
+
+<script src="{% static 'js/pdf_to_ppt.js' %}"></script>
+{% endblock %}

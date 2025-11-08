@@ -1,0 +1,36 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/image_compress.css' %}">
+{% endblock %}
+
+<div class="image-compress-wrapper">
+  <div class="compress-container">
+    <div class="compress-header">
+      <img src="{% static 'images/image_compress.jpg' %}" alt="Icon" class="compress-title-icon">
+      <h2>Compress Image</h2>
+    </div> 
+
+    <div class="compress-upload-box" id="uploadBox">
+      <input type="file" id="imageInput" accept="image/*" multiple>
+      <div id="fileList"></div>
+      <button id="compressBtn" disabled>Compress</button>
+    </div>
+
+    <!-- ✅ Spinner Overlay -->
+    <div class="compress-overlay" id="loader" style="display:none;">
+      <div class="compress-spinner"></div>
+      <p>Compressing... Please wait...</p>
+    </div>
+
+    <div class="compress-result-box" id="resultBox" style="display:none;">
+      <h3>Compression Complete!</h3>
+      <div id="imageList"></div>
+      <button id="homeBtn">Go Home</button>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/image_compress.js' %}"></script>
+{% endblock %}

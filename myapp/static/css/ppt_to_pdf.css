@@ -1,0 +1,156 @@
+/* Wrap inside .ppt-section so it won’t affect navbar/footer */
+body{
+    background: linear-gradient(180deg, #5038d1 0%, #4b37cc 100%);
+
+}
+.ppt-section {
+  padding: 20px 0;
+  text-align: center;
+}
+h2{
+  color: white;
+}
+/* Header */
+.ppt-section .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.ppt-section .title-icon {
+  width: 40px;
+  height: 40px;
+}
+
+/* Main & result boxes */
+.ppt-section .main-box,
+.ppt-section .result-box {
+  background: #fff;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Texts */
+.ppt-section .sub-heading {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* File upload area */
+.ppt-section .upload-area {
+  text-align: left;
+  margin-bottom: 15px;
+}
+.ppt-section .file-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+.ppt-section input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+/* File info display */
+.ppt-section #fileInfo {
+  margin-top: 10px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.ppt-section #fileInfo:not(.hidden) {
+  display: flex;
+}
+.ppt-section .remove {
+  cursor: pointer;
+  color:  #1A0F47;
+  font-size: 18px;
+}
+
+/* Buttons */
+.ppt-section button {
+  background: #1A0F47;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.ppt-section button:hover {
+  background: #100934;
+}
+.ppt-section .home-btn {
+  background: #28a745;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.ppt-section .home-btn:hover {
+  background: #218838;
+}
+.ppt-section .action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Converted text */
+.ppt-section .converted-name {
+  color: green;
+  font-weight: bold;
+}
+
+.ppt-section .hidden {
+  display: none;
+}
+
+/* Spinner overlay */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+}
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #1A0F47;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ppt-section .main-box,
+  .ppt-section .result-box {
+    width: 90%;
+    padding: 20px;
+  }
+}

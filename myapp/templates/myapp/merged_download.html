@@ -1,0 +1,23 @@
+{% extends 'myapp/layouts/base.html' %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/merged_download.css' %}">
+{% endblock %}
+
+
+<div class="box">
+  <div class="header">
+    <img src="{% static 'images/merge.png' %}" alt="icon" class="title-icon">
+    <h2>Merge PDFs Files</h2>
+  </div>
+  <h2>Your PDFs have been merged successfully!</h2>
+
+  <form method="post"> 
+    {% csrf_token %}
+    <button type="submit" class="btn">Download Merged PDF</button>
+  </form>
+
+  <a href="{% url 'home' %}" class="home-link">← Back to Home</a>
+</div>
+{% endblock %}

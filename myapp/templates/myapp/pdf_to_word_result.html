@@ -1,0 +1,26 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_to_word_result.css' %}">
+{% endblock %}
+
+<div class="pdf-word-result">
+  <div class="box">
+    <div class="header">
+      <img src="{% static 'images/pdf_word.png' %}" alt="Convert Icon" class="icon">
+      <h2>PDF to Word</h2>
+    </div>
+
+    <div class="underline"></div>
+    <h2>Conversion Complete!</h2>
+
+    <p class="filename">{{ filename }}</p>
+
+    <a href="{{ file_url }}" download="{{ filename }}" class="download-btn">Download Word File</a>
+    <br><br>
+    <a href="/" class="home-btn">Go Home</a>
+  </div>
+</div>
+
+{% endblock %}

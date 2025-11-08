@@ -1,0 +1,44 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pdf_protect.css' %}">
+{% endblock %}
+
+<div class="pdf-protect-container">
+  <div class="header">
+    <img src="{% static 'images/prodect_pdf.png' %}" alt="Lock Icon" class="title-icon">
+    <h2>Protect PDF with Password</h2>
+  </div>
+  <div class="header-line"></div>
+
+  <div class="upload-box">
+    <h3>Select PDF File</h3>
+    <input type="file" id="pdfInput" accept="application/pdf">
+    <div id="fileList"></div>
+
+    <h3>Set Password</h3>
+    <div class="password-box">
+      <input type="password" id="passwordInput" placeholder="Enter password">
+      <i id="togglePassword" class="fa fa-eye"></i>
+    </div>
+
+    <button id="protectBtn" disabled>Protect PDF</button>
+  </div>
+
+  <!-- Loader Overlay -->
+  <div class="loader-overlay" id="loaderOverlay">
+    <div class="loader-spinner"></div>
+    <p>Protecting... Please wait...</p>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display:none;">
+    <h3>PDF Protected Successfully!</h3>
+    <p id="fileName"></p>
+    <button id="downloadBtn">Download PDF</button>
+    <button id="homeBtn">Go Home</button>
+  </div>
+</div>
+
+<script src="{% static 'js/pdf_protect.js' %}"></script>
+{% endblock %}

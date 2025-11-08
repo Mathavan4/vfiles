@@ -1,0 +1,36 @@
+{% extends "myapp/layouts/base.html" %}
+{% load static %}
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/image_to_pdf.css' %}">
+{% endblock %}
+
+<div class="container">
+  <div class="header">
+    <img src="{% static 'images/jpg_pdf.png' %}" alt="icon" class="title-icon">
+    <h2>Convert Image to PDF</h2>
+  </div>
+  <hr class="underline">
+
+  <div class="upload-box">
+    <input type="file" id="imageInput" accept="image/*" multiple>
+    <div id="previewContainer" class="preview-container"></div>
+    <button id="convertBtn" class="convert-btn" disabled>Convert to PDF</button>
+  </div>
+
+  <!-- Full Screen Spinner -->
+  <div id="spinnerOverlay" class="spinner-overlay">
+    <div class="spinner"></div>
+    <p>Converting... Please wait...</p>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <h3>Conversion Complete!</h3>
+    <p id="resultFile"></p>
+    <button class="download-btn" id="downloadBtn">Download</button>
+    <button class="home-btn" id="homeBtn">Go Home</button>
+  </div>
+</div>
+
+<script src="{% static 'js/image_to_pdf.js' %}"></script>
+{% endblock %}
